@@ -1,15 +1,20 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import popup from '@/pages/popup/popup'
+import accordion from '@/pages/accordion/accordion'
 
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
+  routes: [{
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'popup',
+      component: popup
+    },
+    {
+      path: '/accordion',
+      name: 'accordion',
+      component: accordion
     }
   ]
 })

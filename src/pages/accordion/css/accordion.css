@@ -1,0 +1,68 @@
+.common-fir-li {
+  background-image: url("../../../assets/bg01.jpg");
+}
+
+.common-sec-li {
+  background-image: url("../../../assets/bg02.jpg");
+}
+
+.common-thi-li {
+  background-image: url("../../../assets/bg03.jpg");
+}
+
+.common-four-li {
+  background-image: url("../../../assets/bg01.jpg");
+}
+
+.common-five-li {
+  background-image: url("../../../assets/bg02.jpg");
+}
+
+.accordion-container {
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.accordion-item {
+  list-style: none;
+  height: 500px;
+  transition: width 0.5s;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.accordion-item .accordion-title {
+  color: #fff;
+  font-size: 18px;
+  z-index: 2;
+}
+
+.accordion-item:not(:hover) {
+  width: 20%;
+}
+.accordion-item:hover {
+  width: 800px;
+}
+
+.accordion-item:hover::after {
+  opacity: 1;
+}
+.accordion-item::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
