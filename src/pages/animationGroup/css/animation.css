@@ -1,0 +1,536 @@
+body {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background: #222;
+}
+
+.loading {
+  display: flex;
+  animation-delay: 1s;
+}
+
+.dot {
+  position: relative;
+  width: 2em;
+  height: 2em;
+  margin: 0.8em;
+  border-radius: 50%;
+}
+
+.dot::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  border-radius: inherit;
+  animation: wave 2s ease-out infinite;
+}
+
+.dot::before:nth-child(1) {
+  background: #7ef9ff;
+}
+
+.dot::before:nth-child(1)::before {
+  animation-delay: 1 * 0.2s;
+}
+
+.dot::before:nth-child(2) {
+  background: #7ef9ff;
+}
+
+.dot::before:nth-child(2)::before {
+  animation-delay: 2 * 0.2s;
+}
+
+.dot::before:nth-child(3) {
+  background: #7ef9ff;
+}
+
+.dot::before:nth-child(3)::before {
+  animation-delay: 3 * 0.2s;
+}
+
+.dot::before:nth-child(4) {
+  background: #7ef9ff;
+}
+
+.dot::before:nth-child(4)::before {
+  animation-delay: 4 * 0.2s;
+}
+
+.dot::before:nth-child(5) {
+  background: #7ef9ff;
+}
+
+.dot::before:nth-child(5)::before {
+  animation-delay: 5 * 0.2s;
+}
+
+@keyframes wave {
+  50%,
+  75% {
+    transform: scale(2.5);
+  }
+
+  80%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* 配合js切割字体动画 */
+p {
+  margin: 0 9em;
+  font-size: 2em;
+  font-weight: 600;
+}
+
+.landIn {
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 1.8;
+  color: white;
+  font-family: Lora, serif;
+  white-space: pre;
+}
+
+.landIn span {
+  animation: landIn 0.8s ease-out both;
+}
+
+@keyframes landIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 从字体中间切割动画 */
+.reveal {
+  position: relative;
+  display: flex;
+  color: #6ee1f5;
+  font-size: 2em;
+  font-family: Raleway, sans-serif;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  white-space: pre;
+}
+
+.reveal span {
+  opacity: 0;
+  transform: scale(0);
+  animation: fadeIn 2.4s forwards;
+}
+
+.reveal::before,
+.reveal::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  height: 100%;
+  background: white;
+  opacity: 0;
+  transform: scale(0);
+}
+
+.reveal::before {
+  left: 50%;
+  animation: slideLeft 1.5s cubic-bezier(0.7, -0.6, 0.3, 1.5) forwards;
+}
+
+.reveal::after {
+  right: 50%;
+  animation: slideRight 1.5s cubic-bezier(0.7, -0.6, 0.3, 1.5) forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideLeft {
+  to {
+    left: -6%;
+    opacity: 1;
+    transform: scale(0.9);
+  }
+}
+
+@keyframes slideRight {
+  to {
+    right: -6%;
+    opacity: 1;
+    transform: scale(0.9);
+  }
+}
+
+/* 伪元素伪类使用 */
+.btn {
+  /* --hue: 190;
+  --ease-in-duration: 0.25s;
+  --ease-in-exponential: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  --ease-out-duration: 0.65s;
+  --ease-out-delay: var(--ease-in-duration);
+  --ease-out-exponential: cubic-bezier(0.19, 1, 0.22, 1);
+  position: relative;
+  padding: 1rem 3rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: white;
+  text-decoration: none;
+  background-color: hsl(var(--hue), 100%, 41%);
+  border: 1px solid hsl(var(--hue), 100%, 41%);
+  outline: transparent;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: 0.25s;
+
+  &:hover {
+    background: hsl(var(--hue), 100%, 31%);
+  }
+
+  &-primary {
+    --hue: 171;
+  }
+
+  &-ghost {
+    color: hsl(var(--hue), 100%, 41%);
+    background-color: transparent;
+    border-color: hsl(var(--hue), 100%, 41%);
+
+    &:hover {
+      color: white;
+    }
+  }
+
+  &-border-stroke {
+    border-color: hsla(var(--hue), 100%, 41%, 0.35);
+
+    .btn-borders {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      .border-top {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 1px;
+        background: hsl(var(--hue), 100%, 41%);
+        transform: scaleX(0);
+        transform-origin: left;
+      }
+
+      .border-right {
+        position: absolute;
+        right: 0;
+        width: 1px;
+        height: 100%;
+        background: hsl(var(--hue), 100%, 41%);
+        transform: scaleY(0);
+        transform-origin: bottom;
+      }
+
+      .border-bottom {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 1px;
+        background: hsl(var(--hue), 100%, 41%);
+        transform: scaleX(0);
+        transform-origin: left;
+      }
+
+      .border-left {
+        position: absolute;
+        left: 0;
+        width: 1px;
+        height: 100%;
+        background: hsl(var(--hue), 100%, 41%);
+        transform: scaleY(0);
+        transform-origin: bottom;
+      }
+
+      // when unhover, ease-out left, bottom; ease-in right, top
+
+      .border-left {
+        transition: var(--ease-out-duration) var(--ease-out-delay)
+          var(--ease-out-exponential);
+      }
+      .border-bottom {
+        transition: var(--ease-out-duration) var(--ease-out-delay)
+          var(--ease-out-exponential);
+      }
+
+      .border-right {
+        transition: var(--ease-in-duration) var(--ease-in-exponential);
+      }
+      .border-top {
+        transition: var(--ease-in-duration) var(--ease-in-exponential);
+      }
+    }
+
+    &:hover {
+      color: hsl(var(--hue), 100%, 41%);
+      background: transparent;
+
+      .border-top,
+      .border-bottom {
+        transform: scaleX(1);
+      }
+      .border-left,
+      .border-right {
+        transform: scaleY(1);
+      }
+
+      // when hover, ease-in left, bottom; ease-out right, top
+
+      .border-left {
+        transition: var(--ease-in-duration) var(--ease-in-exponential);
+      }
+      .border-bottom {
+        transition: var(--ease-in-duration) var(--ease-in-exponential);
+      }
+
+      .border-right {
+        transition: var(--ease-out-duration) var(--ease-out-delay)
+          var(--ease-out-exponential);
+      }
+      .border-top {
+        transition: var(--ease-out-duration) var(--ease-out-delay)
+          var(--ease-out-exponential);
+      }
+    }
+  }
+
+  &-text-float-up {
+    &::after {
+      position: absolute;
+      content: attr(data-text);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(35%);
+      transition: 0.25s ease-out;
+    }
+
+    // when hover, ease-in top-text; ease-out bottom-text
+
+    .btn-text {
+      display: block;
+      transition: 0.75s 0.1s var(--ease-out-exponential);
+    }
+
+    &:hover {
+      // when hover, ease-in bottom-text; ease-out top-text
+
+      .btn-text {
+        opacity: 0;
+        transform: translateY(-25%);
+        transition: 0.25s ease-out;
+      }
+
+      &::after {
+        opacity: 1;
+        transform: translateY(0);
+        transition: 0.75s 0.1s var(--ease-out-exponential);
+      }
+    }
+  } */
+}
+
+/* 伪元素动画 */
+
+.slide-bar {
+  position: relative;
+  color: transparent;
+  animation: fill-text-white 2s 1.6s forwards;
+}
+
+.slide-bar::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #35b9f1;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: slide-in-out 2s cubic-bezier(0.75, 0, 0, 1) forwards;
+}
+
+@keyframes slide-in-out {
+  50% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  50.1% {
+    transform-origin: right;
+  }
+
+  100% {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+}
+
+@keyframes fill-text-white {
+  to {
+    color: white;
+  }
+}
+
+.title,
+.subtitle {
+  width: 250px;
+  height: 30px;
+}
+
+.title {
+  margin: 0;
+  font-family: Lora, serif;
+  font-size: 32px;
+  line-height: 30px;
+}
+
+.title::before {
+  background: #ff4081;
+}
+
+.subtitle {
+  margin: 10px 0 0 0;
+  font-family: Lato, sans-serif;
+  font-size: 12px;
+  line-height: 30px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  animation-delay: 3.2s;
+}
+
+.subtitle::before {
+  background: #03a9f4;
+  animation-delay: 2s;
+}
+
+/* attr() 生成内容 */
+.float-text-menu {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+}
+
+.float-text-menu a {
+  display: flex;
+  padding: 6px;
+  color: white;
+  font-family: Lato, sans-serif;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.float-text-menu span {
+  position: relative;
+  transition: 0.3s;
+}
+
+.float-text-menu span::before {
+  position: absolute;
+  content: attr(data-text);
+  transform: translateY(130%);
+}
+
+.float-text-menu a:hover span {
+  transform: translateY(-130%);
+}
+
+/* overflow 障眼法的使用 */
+.btn {
+  --hue: 190;
+  position: relative;
+  padding: 1rem 3rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-color: hsl(var(--hue), 100%, 41%);
+  border: 1px solid hsl(var(--hue), 100%, 41%);
+  outline: transparent;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: 0.25s;
+}
+
+.btn:hover {
+  background: hsl(var(--hue), 100%, 31%);
+}
+
+.btn -primary {
+  --hue: 187;
+}
+
+.btn -ghost {
+  color: hsl(var(--hue), 100%, 41%);
+  background-color: transparent;
+  border-color: hsl(var(--hue), 100%, 41%);
+}
+
+btn -ghost:hover {
+  color: white;
+}
+
+.btn -shine {
+  color: white;
+}
+
+.btn::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    hsla(var(--hue), 100%, 41%, 0.5),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: 0.6s;
+}
+
+.btn:hover {
+  background: transparent;
+  box-shadow: 0 0 20px 10px hsla(var(--hue), 100%, 41%, 0.5);
+}
+
+.btn:hover::before {
+  transform: translateX(100%);
+}

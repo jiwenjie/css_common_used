@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>动画集合效果实现</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <link rel="stylesheet" type="text/css" href="./css/reset.css">
+  <link rel="stylesheet" type="text/css" href="./css/animation.css">
+  <link rel="stylesheet" type="text/css" href="./css/animationi.less">
+</head>
+
+<body>
+  <div id="content">
+    <div class="loading">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+
+    <!--js切割字体（从左到右）-->
+    <div>
+      <p class="landIn">Ano hi watashitachi mada shiranai no Fushigi no monogatari desu.</p>
+    </div>
+
+    <!--从中间切割字体-->
+    <div class="reveal" style="margin-top: 30px;">sword art onlinesword art onlinesword art online</div>
+
+    <!--伪元素伪类使用-->
+    <div>
+      <button data-text="Start" class="btn btn-primary btn-ghost btn-border-stroke  btn-text-float-up">
+        <div class="btn-borders">
+          <div class="border-top"></div>
+          <div class="border-right"></div>
+          <div class="border-bottom"></div>
+          <div class="border-left"></div>
+        </div>
+        <span class="btn-text">Start</span>
+      </button>
+    </div>
+
+    <!--伪元素使用-->
+    <header style="margin-top: 30px;">
+      <h1 class="title slide-bar">I'm alphardex.</h1>
+      <p class="subtitle slide-bar">A CSS Wizard</p>
+    </header>
+
+    <!--attr()生成文本内容-->
+    <div style="margin-top: 30px;">
+      <ul class="float-text-menu">
+        <li><a href="#" data-text="Home">Home</a></li>
+        <li><a href="#" data-text="Archives">Archives</a></li>
+        <li><a href="#" data-text="Tags">Tags</a></li>
+        <li><a href="#" data-text="Categories">Categories</a></li>
+        <li><a href="#" data-text="About">About</a></li>
+      </ul>
+    </div>
+
+    <!--overflow 使用-->
+    <div style="margin-top: 30px;">
+      <button class="btn btn-primary btn-ghost btn-shine">
+        hover me
+      </button>
+    </div>
+
+    <!--form 定制内容-->
+    <div style="margin-top: 30px;">
+      <form>
+        <fieldset class="todo-list">
+          <legend class="todo-list__title">My Special Todo List</legend>
+          <label class="todo-list__label">
+            <input type="checkbox" name="" id="" />
+            <i class="check"></i>
+            <span>Make awesome CSS animation</span>
+          </label>
+          <label class="todo-list__label">
+            <input type="checkbox" name="" id="" />
+            <i class="check"></i>
+            <span>Watch awesome bangumi</span>
+          </label>
+          <label class="todo-list__label">
+            <input type="checkbox" name="" id="" />
+            <i class="check"></i>
+            <span>Encounter awesome people</span>
+          </label>
+          <label class="todo-list__label">
+            <input type="checkbox" name="" id="" />
+            <i class="check"></i>
+            <span>Be an awesome man</span>
+          </label>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</body>
+<script>
+  // 切割字体动画
+  let landInTexts = document.querySelectorAll(".landIn");
+  landInTexts.forEach(landInText => {
+    let letters = landInText.textContent.split("");
+    landInText.textContent = "";
+    letters.forEach((letter, i) => {
+      let span = document.createElement("span");
+      span.textContent = letter;
+      span.style.animationDelay = `${i * 0.05}s`;
+      landInText.append(span);
+    });
+  });
+
+  // 字体从中间显示动画
+  let duration = 0.8;
+  let delay = 0.3;
+  let revealText = document.querySelector(".reveal");
+  let letters = revealText.textContent.split("");
+  revealText.textContent = "";
+  let middle = letters.filter(e => e !== " ").length / 2;
+  letters.forEach((letter, i) => {
+    let span = document.createElement("span");
+    span.textContent = letter;
+    span.style.animationDelay = `${delay + Math.abs(i - middle) * 0.1}s`;
+    revealText.append(span);
+  });
+
+  // attr 生成内容
+  let floatTextMenuLinks = document.querySelectorAll(".float-text-menu li a");
+  floatTextMenuLinks.forEach(link => {
+    let letters = link.textContent.split("");
+    link.textContent = "";
+    letters.forEach((letter, i) => {
+      let span = document.createElement("span");
+      span.textContent = letter;
+      span.style.transitionDelay = `${i / 20}s`;
+      span.dataset.text = letter;
+      link.append(span);
+    });
+  });
+
+</script>
+
+</html>
