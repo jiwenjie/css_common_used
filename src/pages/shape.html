@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>各种形状集合</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+
+  <style>
+    .inline-block {
+      display: inline-block;
+      margin: 16px;
+    }
+
+    .common-margin {
+      margin-top: 12px;
+    }
+
+    /* 三角形 */
+    .traingle {
+      width: 0;
+      height: 0;
+      border-left: 50px solid transparent;
+      border-right: 50px solid transparent;
+      border-bottom: 100px solid yellowgreen;
+    }
+
+    /* 切角 */
+    .notching {
+      width: 40px;
+      height: 40px;
+      padding: 40px;
+      background: linear-gradient(135deg, transparent 15px, yellowgreen 0) top left,
+        linear-gradient(-135deg, transparent 15px, yellowgreen 0) top right,
+        linear-gradient(-45deg, transparent 15px, yellowgreen 0) bottom right,
+        linear-gradient(45deg, transparent 15px, yellowgreen 0) bottom left;
+      background-size: 50% 50%;
+      background-repeat: no-repeat;
+    }
+
+    /* 梯形 1-伪元素 */
+    /* .trapezoid {
+      position: relative;
+      width: 60px;
+      padding: 60px;
+    }
+
+    .trapezoid::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      transform: perspective(20px) scaleY(1.3) rotateX(5deg);
+      transform-origin: bottom;
+      background: yellowgreen;
+    } */
+
+    /* 梯形 1-border实现 */
+    .trapezoid {
+      position: relative;
+      width: 60px;
+      border-top: 60px solid yellowgreen;
+      border-left: 40px solid transparent;
+      border-right: 40px solid transparent;
+    }
+
+    /* 五边形 */
+    .pentagon {
+      position: relative;
+      width: 60px;
+      border-bottom: 60px solid yellowgreen;
+      border-left: 40px solid transparent;
+      border-right: 40px solid transparent;
+    }
+
+    .pentagon::before {
+      content: "";
+      position: absolute;
+      top: 60px;
+      left: -40px;
+      border-top: 60px solid yellowgreen;
+      border-left: 70px solid transparent;
+      border-right: 70px solid transparent;
+    }
+
+    /* 六边形 */
+    .pentagon-six {
+      position: relative;
+      width: 60px;
+      border-bottom: 60px solid yellowgreen;
+      border-left: 40px solid transparent;
+      border-right: 40px solid transparent;
+    }
+
+    .pentagon-six::before {
+      content: "";
+      position: absolute;
+      width: 60px;
+      height: 0px;
+      top: 60px;
+      left: -40px;
+      border-top: 60px solid yellowgreen;
+      border-left: 40px solid transparent;
+      border-right: 40px solid transparent;
+    }
+
+    /* 八边形 */
+    .octagon {
+      position: relative;
+      width: 40px;
+      height: 100px;
+      background: yellowgreen;
+    }
+
+    .octagon::before {
+      content: "";
+      height: 60px;
+      position: absolute;
+      top: 0;
+      left: 40px;
+      border-left: 30px solid yellowgreen;
+      border-top: 20px solid transparent;
+      border-bottom: 20px solid transparent;
+    }
+
+    .octagon::after {
+      content: "";
+      height: 60px;
+      position: absolute;
+      top: 0;
+      left: -30px;
+      border-right: 30px solid yellowgreen;
+      border-top: 20px solid transparent;
+      border-bottom: 20px solid transparent;
+    }
+
+    /* 五角星-使用 3 个三角形叠加旋转在一起实现 */
+    .star {
+      margin: 50px 0;
+      position: relative;
+      width: 0;
+      border-right: 100px solid transparent;
+      border-bottom: 70px solid yellowgreen;
+      border-left: 100px solid transparent;
+      transform: rotate(35deg) scale(.6);
+    }
+
+    .star:before {
+      content: '';
+      position: absolute;
+      border-bottom: 80px solid yellowgreen;
+      border-left: 30px solid transparent;
+      border-right: 30px solid transparent;
+      top: -45px;
+      left: -65px;
+      transform: rotate(-35deg);
+    }
+
+    .star:after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: -105px;
+      border-right: 100px solid transparent;
+      border-bottom: 70px solid yellowgreen;
+      border-left: 100px solid transparent;
+      transform: rotate(-70deg);
+    }
+
+    /* 六角星 */
+    .sixstar {
+      position: relative;
+      width: 0;
+      border-left: 50px solid transparent;
+      border-right: 50px solid transparent;
+      border-bottom: 100px solid yellowgreen;
+    }
+
+    .sixstar:after {
+      content: "";
+      position: absolute;
+      border-left: 50px solid transparent;
+      border-right: 50px solid transparent;
+      border-top: 100px solid yellowgreen;
+      top: 30px;
+      left: -50px;
+    }
+
+    /* 八角星 */
+    .eightstar {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      background-color: yellowgreen;
+      transform: rotate(30deg);
+    }
+
+    .eightstar::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100px;
+      height: 100px;
+      transform: rotate(45deg);
+      background-color: yellowgreen;
+    }
+
+    /* 十二角星 */
+    .twelvestar {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      margin-bottom: 100px !important;
+      background-color: yellowgreen;
+      transform: rotate(30deg);
+    }
+
+    .twelvestar::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100px;
+      height: 100px;
+      transform: rotate(30deg);
+      background-color: yellowgreen;
+    }
+
+    .twelvestar::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100px;
+      height: 100px;
+      transform: rotate(60deg);
+      background-color: yellowgreen;
+    }
+
+    /* 椭圆 */
+    .ellipse {
+      width: 120px;
+      height: 160px;
+      background-color: yellowgreen;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- 三角形 -->
+  <div class="inline-block traingle"></div>
+  <!-- 切角 -->
+  <div class="inline-block notching"></div>
+  <!-- 梯形 -->
+  <div class="inline-block trapezoid"></div>
+  <!-- 五边形 -->
+  <div class="inline-block pentagon"></div>
+  <!-- 六边形 -->
+  <div class="inline-block pentagon-six"></div>
+  <!-- 八边形 -->
+  <div class="inline-block octagon"></div>
+  <!-- 五角星-使用 3 个三角形叠加旋转在一起实现 -->
+  <div class="inline-block star"></div>
+  <!-- 六角星 -->
+  <div class="inline-block sixstar"></div>
+  <!-- 八角星 -->
+  <div class="inline-block eightstar"></div>
+  <!-- 十二角星 -->
+  <div class="inline-block twelvestar"></div>
+  <!-- 椭圆 -->
+  <div class="inline-block ellipse"></div>
+</body>
+
+</html>

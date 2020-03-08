@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- 目前该新特性不是所有浏览器都支持（chrom支持但是safari不支持） -->
+  <title>clip-path的基本使用</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+
+  <style>
+    .inline-block {
+      display: inline-block;
+      margin: 16px;
+    }
+
+    .common-margin {
+      margin-top: 12px;
+    }
+
+    /* 圆形 */
+    .circle {
+      width: 100px;
+      height: 100px;
+      background-color: yellowgreen;
+      clip-path: circle(50px at 50px 50px);
+    }
+
+    /* 十边形 */
+    .polygon {
+      width: 100px;
+      height: 100px;
+      background-color: yellowgreen;
+      clip-path: polygon(50% 0%, 80% 10%, 100% 35%, 100% 70%, 80% 90%, 50% 100%, 20% 90%, 0% 70%, 0% 35%, 20% 10%);
+    }
+
+    /* clip-path 另外一个强大之处在于可以进行 CSS transtion 与 CSS animation，也就是过渡和动画。 */
+
+  </style>
+</head>
+
+<body>
+  <div class="circle"></div>
+  <div class="polygon common-margin"></div>
+
+  <!-- clip-path 另外一个强大之处在于可以进行 CSS transtion 与 CSS animation，也就是过渡和动画。 -->
+  <div class="polygon-animate"></div>
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+.tip {
+  width: 200px;
+  height: 80px;
+  display: none;
+  background-color: red;
+  color: #333333;
+  line-height: 18px;
+  border: 1px solid blue;
+  padding: 5px;
+}
