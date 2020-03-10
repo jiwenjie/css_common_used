@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>动画集合效果实现</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <!-- <link rel="stylesheet" type="text/css" href="./css/reset.css"> -->
+  <link rel="stylesheet" type="text/css" href="./css/animation003.css">
+</head>
+
+<body>
+  <div class="content">
+    <div class="reveal">sword art online</div>
+  </div>
+</body>
+<script>
+  "use strict";
+  var duration = 0.8;
+  var delay = 0.3;
+  var revealText = document.querySelector(".reveal");
+  var letters = revealText.textContent.split("");
+  revealText.textContent = "";
+  var middle = letters.filter(function (e) {
+    return e !== " ";
+  }).length / 2;
+  letters.forEach(function (letter, i) {
+    var span = document.createElement("span");
+    span.textContent = letter;
+    span.style.animationDelay = delay + Math.abs(i - middle) * 0.1 + "s";
+    revealText.append(span);
+  });
+
+</script>
+
+</html>

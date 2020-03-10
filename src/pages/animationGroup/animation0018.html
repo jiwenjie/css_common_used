@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>动画集合效果实现</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <!-- <link rel="stylesheet" type="text/css" href="./css/reset.css"> -->
+  <link rel="stylesheet" type="text/css" href="./css/animation0018.css">
+</head>
+
+<body>
+  <div id='content'>
+    <ul>
+      <li><a href="#">home</a></li>
+      <li><a href="#">archives</a></li>
+      <li><a href="#">tags</a></li>
+      <li><a href="#">categories</a></li>
+      <li><a href="#">about</a></li>
+    </ul>
+  </div>
+</body>
+<script>
+  let loading = document.querySelector(".loading");
+  let letters = loading.textContent.split("");
+  loading.textContent = "";
+  letters.forEach((letter, i) => {
+    let span = document.createElement("span");
+    span.textContent = letter;
+    span.style.animationDelay = `${i / 10}s`;
+    loading.append(span);
+  });
+
+</script>
+
+</html>

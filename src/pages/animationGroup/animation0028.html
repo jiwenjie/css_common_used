@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>动画集合效果实现</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <!-- <link rel="stylesheet" type="text/css" href="./css/reset.css"> -->
+  <link rel="stylesheet" type="text/css" href="./css/animation0028.css">
+</head>
+
+<body>
+  <div id='content'>
+    <ul class="shinchou-menu">
+      <li><a href="#">ニュース</a></li>
+      <li><a href="#">ストーリー</a></li>
+      <li><a href="#">スターフ＆キャスト</a></li>
+      <li><a href="#">キャラクター</a></li>
+      <li><a href="#">放送·配信情報</a></li>
+    </ul>
+  </div>
+</body>
+<script>
+  "use strict";
+  var shinchouMenuLinks = document.querySelectorAll(".shinchou-menu li a");
+  shinchouMenuLinks.forEach(function (link) {
+    var letters = link.textContent.split("");
+    link.textContent = "";
+    letters.forEach(function (letter, i) {
+      var span = document.createElement("span");
+      span.textContent = letter;
+      if (i < 2) {
+        span.className = "highlight";
+      }
+      span.style.transitionDelay = i / 10 + "s";
+      link.append(span);
+    });
+  });
+
+</script>
+
+</html>
